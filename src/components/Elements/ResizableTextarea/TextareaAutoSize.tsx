@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent } from 'react'
 import { useTextareaAutoSize } from '../../../hooks/Elements/useTextareaAutoSize/index'
 
-const ResizableTextarea: React.FC = () => {
+const TextareaAutoSize: React.FC = () => {
   const [text, setText] = useState('')
   const { textarea, setInput } = useTextareaAutoSize({ input: text })
 
@@ -14,4 +14,4 @@ const ResizableTextarea: React.FC = () => {
   return <textarea ref={textarea} value={text} onChange={handleChange} style={{ resize: 'none' }} />
 }
 
-export default ResizableTextarea
+export default TextareaAutoSize
