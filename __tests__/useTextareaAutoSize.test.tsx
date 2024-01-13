@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, fireEvent, screen, renderHook, act } from '@testing-library/react'
 import { useTextareaAutoSize } from '../src/hooks/Elements/useTextareaAutoSize/index'
-import ResizableTextarea from '../src/components/Elements/ResizableTextarea/ResizableTextarea'
+import TextareaAutoSize from '../src/components/Elements/TextareaAutoSize/TextareaAutoSize'
 
 describe('useTextareaAutosize', () => {
   it('initializes textarea and input ref with default values', () => {
@@ -22,7 +22,7 @@ describe('useTextareaAutosize', () => {
   })
 
   it('resizes the textarea based on content', () => {
-    render(<ResizableTextarea />)
+    render(<TextareaAutoSize />)
     const textarea = screen.getByRole('textbox') as HTMLTextAreaElement
 
     // Mocking the scrollHeight property
