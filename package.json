@@ -8,7 +8,7 @@
   "private": false,
   "scripts": {
     "build2": "npm run build:types && npm run build:js",
-    "build": "rm -rf dist && NODE_ENV=production && npm run build:esm && npm run build:cjs",
+    "build": "rm -rf dist && NODE_ENV=production && npm run build:types && npm run build:esm && npm run build:cjs",
     "build:js": "rm -rf dist && NODE_ENV=production babel src/hooks --out-dir dist --copy-files --extensions \".ts,.tsx\" --source-maps true",
     "build:types": "./node_modules/.bin/tsc --project ./tsconfig.json",
     "build:esm": "tsc",
@@ -17,8 +17,7 @@
     "prepare": "npm run build && husky install",
     "prepublishOnly": "npm run test && npm run prettier && npm run lint",
     "prettier": "prettier --write \"{src,tests,example/src}/**/*.{js,ts,jsx,tsx}\"",
-    "test": "jest --config jestconfig.json",
-    "commitlint": "commitlint --edit"
+    "test": "jest --config jestconfig.json"
   },
   "keywords": [
     "react",
