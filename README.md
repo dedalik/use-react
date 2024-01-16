@@ -1,1 +1,5 @@
-# ReactUse Collection of React Hook Utilities
+# useReact - Collection of React Hooks
+
+### useTextareaAutoSize()
+
+### useFavicon()
