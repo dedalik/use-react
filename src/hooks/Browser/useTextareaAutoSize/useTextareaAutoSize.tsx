@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState, useCallback, RefObject } from 'react'
 
-interface UseTextareaAutosizeOptions {
-  /** Textarea element to autosize. */
-  element?: HTMLTextAreaElement | undefined
+interface UseTextareaAutoSizeOptions {
+  /** Textarea element ref. */
+  elementRef?: RefObject<HTMLTextAreaElement>
   /** Textarea content. */
   input?: string | undefined
   /** Function called when the textarea size changes. */
@@ -11,9 +11,10 @@ interface UseTextareaAutosizeOptions {
   styleTarget?: HTMLElement
 }
 
-export function useTextareaAutoSize(options?: UseTextareaAutosizeOptions) {
+export default function useTextareaAutoSize(options?: UseTextareaAutoSizeOptions) {
   const [input, setInput] = useState<string | undefined>(options?.input)
-  const textareaRef = useRef<HTMLTextAreaElement | null>(null)
+  const internalTextareaRef = useRef<HTMLTextAreaElement | null>(null)
+  const textareaRef = options?.elementRef || internalTextareaRef
 
   const triggerResize = useCallback(() => {
     const textarea = textareaRef.current
@@ -36,7 +37,7 @@ export function useTextareaAutoSize(options?: UseTextareaAutosizeOptions) {
     textarea.style.height = height
 
     options?.onResize?.()
-  }, [options])
+  }, [options, textareaRef])
 
   useEffect(() => {
     triggerResize()
@@ -47,15 +48,12 @@ export function useTextareaAutoSize(options?: UseTextareaAutosizeOptions) {
     setInput(options?.input)
   }, [options?.input])
 
-  // You may need to implement or import a useResizeObserver hook if required
-  // useResizeObserver(textareaRef, () => triggerResize());
-
   return {
-    textarea: textareaRef,
+    textareaRef,
     input,
     setInput, // To allow updating the input externally
     triggerResize,
   }
 }
 
-export type UseTextareaAutosizeReturn = ReturnType<typeof useTextareaAutoSize>
+export type UseTextareaAutoSizeType = ReturnType<typeof useTextareaAutoSize>
