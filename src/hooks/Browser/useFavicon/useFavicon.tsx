@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 
 export interface UseFaviconOptions {
   newIcon?: string
@@ -7,7 +7,14 @@ export interface UseFaviconOptions {
   doc?: Document
 }
 
-const useFavicon = ({ newIcon = '', baseUrl = '', rel = 'icon', doc = document }: UseFaviconOptions = {}) => {
+export type UseFaviconReturnType = [string, React.Dispatch<React.SetStateAction<string>>]
+
+const useFavicon = ({
+  newIcon = '',
+  baseUrl = '',
+  rel = 'icon',
+  doc = document,
+}: UseFaviconOptions = {}): UseFaviconReturnType => {
   const [favicon, setFavicon] = useState<string>(newIcon)
 
   const applyIcon = useCallback(
