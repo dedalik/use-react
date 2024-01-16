@@ -1,3 +1,4 @@
-import { useTextareaAutoSize } from './hooks/Elements/useTextareaAutoSize/index'
+import useFavicon from './hooks/Browser/useFavicon/useFavicon'
+import { useTextareaAutoSize } from './hooks/Browser/useTextareaAutoSize/useTextareaAutoSize'
 
-export { useTextareaAutoSize }
+export { useTextareaAutoSize, useFavicon }
