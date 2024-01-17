@@ -1,6 +1,6 @@
 {
   "name": "@dedalik/use-react",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Collection of React Hook Utilities",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
