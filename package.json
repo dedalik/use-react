@@ -17,7 +17,8 @@
     "prepare": "npm run build && husky install",
     "prepublishOnly": "npm run test && npm run prettier && npm run lint",
     "prettier": "prettier --write \"{src,tests,example/src}/**/*.{js,ts,jsx,tsx}\"",
-    "test": "jest --config jestconfig.json"
+    "test": "jest --config jestconfig.json",
+    "test:coverage": "jest --coverage --config jestconfig.json"
   },
   "keywords": [
     "react",
