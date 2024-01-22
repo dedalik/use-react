@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { on, off } from '../../utils/helpers'
+import { on, off } from '../utils/helpers'
 
 /**
  * Custom React hook for reading and updating the URL hash (window.location.hash).
