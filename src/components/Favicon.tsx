@@ -1,5 +1,5 @@
 import React from 'react'
-import { useFavicon } from '../../..'
+import { useFavicon } from '..'
 
 const Favicon: React.FC = () => {
   const [, setFavicon] = useFavicon()

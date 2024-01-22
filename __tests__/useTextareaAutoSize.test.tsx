@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, fireEvent, screen, renderHook, act } from '@testing-library/react'
-import TextareaAutoSize from '../src/components/Browser/TextareaAutoSize/TextareaAutoSize'
+import TextareaAutoSize from '../src/components/TextareaAutoSize'
 import { useTextareaAutoSize } from '../src'
 
 describe('useTextareaAutoSize', () => {
