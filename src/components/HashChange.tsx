@@ -1,5 +1,5 @@
 import React from 'react'
-import { useHash } from '../..'
+import { useHash } from '..'
 
 const HashChange = () => {
   // Use the useHash hook to access the current hash and a function to update it

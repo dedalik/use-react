@@ -1,6 +1,6 @@
-import useOnMount from './hooks/State/useOnMount/useOnMount'
-import useFavicon from './hooks/Browser/useFavicon/useFavicon'
-import useTextareaAutoSize from './hooks/Browser/useTextareaAutoSize/useTextareaAutoSize'
-import useHash from './hooks/Elements/useHash'
+import useOnMount from './hooks/useOnMount'
+import useFavicon from './hooks/useFavicon'
+import useTextareaAutoSize from './hooks/useTextareaAutoSize'
+import useHash from './hooks/useHash'
 
 export { useTextareaAutoSize, useFavicon, useOnMount, useHash }
