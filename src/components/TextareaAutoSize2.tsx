@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react'
-import useTextareaAutoSize from '../../../hooks/Browser/useTextareaAutoSize/useTextareaAutoSize'
+import { useTextareaAutoSize } from '..'
 
 const TextareaAutoSize2: React.FC = () => {
   const { input, textareaRef, setInput } = useTextareaAutoSize()
