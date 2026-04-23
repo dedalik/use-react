@@ -1,3 +1,6 @@
+# Publishes @dedalik/use-react to npm. Requires repository secret NPM_TOKEN on
+# THIS repo (github.com/dedalik/use-react), not use-react-docs. See CONTRIBUTING.md.
+
 name: Release to npm
 
 on:
