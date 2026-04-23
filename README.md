@@ -91,6 +91,10 @@ Refer to [functions list](https://usereact.org/functions) or [documentations](ht
 npm i @dedalik/use-react
 ```
 
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup, formatting (`npm run format`), linting, tests, and pull request expectations.
+
 ## Thanks
 
 This project is heavily inspired by the following awesome projects.

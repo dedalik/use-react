@@ -1,41 +1,55 @@
-# Contributing to use-react
+# Contributing to useReact
 
-Thanks for contributing.
+Thank you for helping improve `@dedalik/use-react`. This document covers how to set up your environment and match project conventions before you open a pull request.
 
-## Development setup
+## Prerequisites
 
-1. Clone the repository.
-2. Install dependencies:
+- Node.js 18 or newer (CI uses Node 20)
+- npm (recommended; `npm ci` is used in CI)
 
-```bash
-npm install
-```
-
-3. Run tests:
+## Getting started
 
 ```bash
-npm run test
+git clone https://github.com/dedalik/use-react.git
+cd use-react
+npm ci
 ```
 
-4. Run lint:
+## Code style
+
+We use **Prettier** for formatting and **ESLint** for linting. Configuration lives in `.prettierrc.json` and `.eslintrc` at the repository root.
+
+| Command            | Purpose                                      |
+| ------------------ | -------------------------------------------- |
+| `npm run format`   | Format `src/`, `tests/`, and `example/src/` |
+| `npm run format:check` | Verify formatting (CI and pre-publish) |
+| `npm run lint`     | Run ESLint                                   |
+
+Run `npm run format` before committing if your editor does not format on save. Husky runs `format:check`, `lint`, and `test` on pre-commit when hooks are installed (`npm install` runs `husky install` via the `prepare` script).
+
+## Tests
 
 ```bash
-npm run lint
+npm test
+npm run test:coverage
 ```
+
+Add or update tests under `__tests__/` for any behavior change.
+
+## Build
+
+```bash
+npm run build
+```
+
+Ensure the TypeScript build completes without errors.
 
 ## Pull requests
 
-- Keep pull requests focused and small.
-- Add or update tests for behavior changes.
-- Update docs in `use-react-docs` when hook APIs change.
-- Ensure `npm run test` and `npm run lint` pass locally before opening a PR.
+- Keep changes focused and describe the motivation in the PR text.
+- Confirm `npm run format:check`, `npm run lint`, `npm run test`, and `npm run build` pass locally.
+- Documentation and user-facing strings should be in **English**.
 
-## Commit quality
+## Documentation site
 
-- Write clear commit messages explaining the intent.
-- Avoid unrelated formatting-only changes in functional PRs.
-
-## Release process
-
-- CI publishes to npm automatically when a GitHub Release is published with a semver tag like `v1.2.3`.
-- The workflow syncs `package.json` version from the release tag before publishing.
+The public docs live in a separate repository. See the [use-react-docs](https://github.com/dedalik/use-react-docs) project if you are updating the VitePress site or examples shown on usereact.org.
