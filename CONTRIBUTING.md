@@ -44,6 +44,22 @@ npm run build
 
 Ensure the TypeScript build completes without errors.
 
+## Release tags (npm)
+
+Publishing is triggered from GitHub Actions when you push a tag matching `v*` (see `.github/workflows/release-npm.yml`). The tag annotation should describe the release; you can reuse the latest commit message automatically:
+
+```bash
+npm run release:tag -- 1.0.6
+```
+
+This creates an **annotated** tag `v1.0.6` whose message is the **subject and body of `HEAD`**. Then push the tag (after `package.json` version matches, if you bump it separately):
+
+```bash
+git push origin v1.0.6
+```
+
+Alternatively use `npm version patch` (or minor/major), which bumps `package.json` and creates a tag with its own default message.
+
 ## Pull requests
 
 - Keep changes focused and describe the motivation in the PR text.
