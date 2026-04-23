@@ -5,6 +5,20 @@
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./*": {
+      "types": "./dist/esm/hooks/*.d.ts",
+      "import": "./dist/esm/hooks/*.js",
+      "require": "./dist/cjs/hooks/*.js"
+    },
+    "./package.json": "./package.json"
+  },
   "private": false,
   "scripts": {
     "build2": "npm run build:types && npm run build:js",
