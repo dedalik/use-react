@@ -64,7 +64,11 @@ Alternatively use `npm version patch` (or minor/major), which bumps `package.jso
 
 1. **Open GitHub Actions** for `dedalik/use-react` → workflow **Release to npm** → the run that matches your tag (`v*`). A red run means publish never completed; open the failed step and read the log (common causes: missing token, auth error, or version already published).
 
-2. **Repository secret `NPM_TOKEN`** (Settings → Secrets and variables → Actions): must be a valid npm **Automation** or **Granular Access** token with **publish** rights for the `@dedalik` scope. Without it, `npm whoami` / `npm publish` fails in CI.
+2. **Repository secret `NPM_TOKEN`** — required for every publish. In GitHub open **Settings → Secrets and variables → Actions → New repository secret**, name **`NPM_TOKEN`**, value = token from npm.
+
+   On npmjs.com go to **Access Tokens** ([direct link](https://www.npmjs.com/settings/~/tokens)): create an **Automation** (classic) token with publish rights, or a **Granular Access Token** that includes **Read and write** for package **`@dedalik/use-react`** (and the org **`@dedalik`** if npm asks). Paste the token value into `NPM_TOKEN` only once; GitHub will not show it again.
+
+   Until this secret exists, CI shows `ENEEDAUTH` / `need auth` on `npm whoami` because `NODE_AUTH_TOKEN` is empty.
 
 3. **Version already on the registry**: npm rejects publishing the same semver twice. Check with `npm view @dedalik/use-react version` and `npm view @dedalik/use-react versions`. Bump to a new semver and tag again, or run **Actions → Release to npm → Run workflow** and enter a new version.
 

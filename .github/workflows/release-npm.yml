@@ -32,6 +32,19 @@ jobs:
           cache: npm
           package-manager-cache: false
           registry-url: https://registry.npmjs.org
+          always-auth: "false"
+
+      - name: Verify npm token for publish
+        run: |
+          if [ -z "${NODE_AUTH_TOKEN}" ]; then
+            echo "::error::Repository secret NPM_TOKEN is missing or empty."
+            echo "Add it under GitHub → Settings → Secrets and variables → Actions."
+            echo "Create an npm token: https://www.npmjs.com/settings/~/tokens (Automation, or Granular with Publish for @dedalik/use-react)."
+            exit 1
+          fi
+          npm whoami
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Install dependencies
         env:
@@ -68,11 +81,6 @@ jobs:
 
       - name: Verify quality gates
         run: npm run format:check && npm run test && npm run lint && npm run build
-
-      - name: Check npm authentication
-        run: npm whoami
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish package to npm
         run: npm publish --access public
