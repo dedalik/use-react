@@ -46,48 +46,41 @@ Ensure the TypeScript build completes without errors.
 
 ## Release tags (npm)
 
-Publishing is triggered from GitHub Actions when you push a tag matching `v*` (see `.github/workflows/release-npm.yml`). The tag annotation should describe the release; you can reuse the latest commit message automatically:
+Publishing runs from GitHub Actions on tags matching `v*` (`.github/workflows/release-npm.yml`). Annotate the tag from `HEAD` when you want the tag message to match the release commit:
 
 ```bash
 npm run release:tag -- 1.0.6
-```
-
-This creates an **annotated** tag `v1.0.6` whose message is the **subject and body of `HEAD`**. Then push the tag (after `package.json` version matches, if you bump it separately):
-
-```bash
 git push origin v1.0.6
 ```
 
-Alternatively use `npm version patch` (or minor/major), which bumps `package.json` and creates a tag with its own default message.
+Alternatively use `npm version patch` (or minor/major), which bumps `package.json` and creates a tag.
 
-### If npm did not show a new version after pushing a tag
+### Trusted publishing (recommended, no `NPM_TOKEN`)
 
-1. **Open GitHub Actions** for `dedalik/use-react` → workflow **Release to npm** → the run that matches your tag (`v*`). A red run means publish never completed; open the failed step and read the log (common causes: missing token, auth error, or version already published).
+[npm Trusted Publishing](https://docs.npmjs.com/trusted-publishers/) uses **OIDC** from GitHub Actions so you do **not** store a long-lived npm token in GitHub.
 
-2. **Repository secret `NPM_TOKEN`** — required for every publish. In GitHub open **Settings → Secrets and variables → Actions → New repository secret**, name **`NPM_TOKEN`**, value = token from npm.
+1. On **npmjs.com**, open package **`@dedalik/use-react`** → **Publishing access** / package settings → **Trusted Publisher** (wording may vary) → choose **GitHub Actions**.
+2. Enter exactly:
+   - **Organization or user:** `dedalik`
+   - **Repository:** `use-react`
+   - **Workflow filename:** `release-npm.yml` (only the file name, must match the file under `.github/workflows/`, case-sensitive)
+   - **Environment (optional):** leave empty unless you also add `environment: <name>` to the `publish` job in this repo — if you set an environment on npm, the job must use the same name.
+3. Keep **`package.json` → `repository.url`** pointing at this repo (`git+https://github.com/dedalik/use-react.git`) — npm uses it for provenance and publisher checks.
+4. The workflow already sets **`permissions: id-token: write`**, **Node 24**, and upgrades **npm to 11.5.1+** (required for OIDC). Publishing runs **`npm publish --access public`** with **no** `NODE_AUTH_TOKEN`.
 
-   On npmjs.com go to **Access Tokens** ([direct link](https://www.npmjs.com/settings/~/tokens)).
+The **first** publish of a brand-new package may still require a one-time manual `npm publish` with login; after the package exists, switch to trusted publishing only.
 
-   - **Classic token type must be `Automation`**, not `Publish` or `Read-only`. `Publish` tokens still hit **`npm error code EOTP`** (one-time password) in GitHub Actions because npm expects interactive 2FA. **Automation** tokens are meant for CI and can publish without OTP.
-   - Alternatively use a **Granular Access Token** with **Read and write** for **`@dedalik/use-react`** (configure publish permissions in the token wizard).
+### Legacy: `NPM_TOKEN` (optional)
 
-   Paste the token value into `NPM_TOKEN` only once; GitHub will not show it again.
+The workflow **does not read `NPM_TOKEN`**. If you are not using trusted publishing yet, add token-based auth back to the workflow locally, or publish manually. For a token-based CI setup, use a classic **`Automation`** token (not `Publish`) to avoid **`EOTP`** in Actions — see [npm access tokens](https://www.npmjs.com/settings/~/tokens).
 
-   Until this secret exists, CI shows `ENEEDAUTH` / `need auth` on `npm whoami` because `NODE_AUTH_TOKEN` is empty.
+### If the registry did not update after a tag
 
-   **If the Actions log still shows `NODE_AUTH_TOKEN:` blank** (our step prints `Repository secret NPM_TOKEN is missing or empty`):
-
-   - Add the secret on **`dedalik/use-react`** (the **library** repository that runs **Release to npm**), not on **`use-react-docs`**. The docs repo never receives this workflow.
-   - The name must be exactly **`NPM_TOKEN`** (case-sensitive). **Repository secrets** tab under **Actions**, not only **Variables** — variables are not passed to `secrets.NPM_TOKEN`.
-   - You need **admin** access to that GitHub repo to create repository secrets.
-   - If the org uses **organization secrets**: ensure this repository is **allowed** to use that secret (org **Settings → Secrets and variables → Actions** → secret → repository access).
-   - If you stored the token under a **GitHub Environment** (for example `production`), either move it to plain **repository** secrets named `NPM_TOKEN`, or add `environment: <name>` to the `publish` job in `.github/workflows/release-npm.yml` so the job can read environment secrets.
-
-3. **Version already on the registry**: npm rejects publishing the same semver twice. Check with `npm view @dedalik/use-react version` and `npm view @dedalik/use-react versions`. Bump to a new semver and tag again, or run **Actions → Release to npm → Run workflow** and enter a new version.
-
-4. **Tag format**: the workflow only reacts to tags named `v1.2.3` (leading `v`, semver after it). Lightweight tags still trigger the workflow, but an annotated tag is recommended for release notes.
-
-5. **Manual publish**: from a clean checkout with `npm ci`, `npm run build`, and `npm login`, run `npm publish --access public` (requires 2FA or token as configured on your npm account).
+1. **Actions** → **Release to npm** → open the failed run and read the log.
+2. **Trusted publisher mismatch:** npm shows auth errors if **owner**, **repo**, or **workflow file name** does not match npm’s form exactly (`release-npm.yml`). **`workflow_dispatch`** is validated against the **same** workflow file name.
+3. **Version already published:** `npm view @dedalik/use-react versions` — bump semver and tag again.
+4. **Self-hosted runners:** trusted publishing is **not** supported on self-hosted GitHub runners yet (npm limitation); use GitHub-hosted `ubuntu-latest` as in this workflow.
+5. **Manual publish:** `npm login` then `npm publish --access public` from a machine with the built `dist/` folder.
 
 ## Pull requests
 
