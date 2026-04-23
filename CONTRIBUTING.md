@@ -66,7 +66,12 @@ Alternatively use `npm version patch` (or minor/major), which bumps `package.jso
 
 2. **Repository secret `NPM_TOKEN`** — required for every publish. In GitHub open **Settings → Secrets and variables → Actions → New repository secret**, name **`NPM_TOKEN`**, value = token from npm.
 
-   On npmjs.com go to **Access Tokens** ([direct link](https://www.npmjs.com/settings/~/tokens)): create an **Automation** (classic) token with publish rights, or a **Granular Access Token** that includes **Read and write** for package **`@dedalik/use-react`** (and the org **`@dedalik`** if npm asks). Paste the token value into `NPM_TOKEN` only once; GitHub will not show it again.
+   On npmjs.com go to **Access Tokens** ([direct link](https://www.npmjs.com/settings/~/tokens)).
+
+   - **Classic token type must be `Automation`**, not `Publish` or `Read-only`. `Publish` tokens still hit **`npm error code EOTP`** (one-time password) in GitHub Actions because npm expects interactive 2FA. **Automation** tokens are meant for CI and can publish without OTP.
+   - Alternatively use a **Granular Access Token** with **Read and write** for **`@dedalik/use-react`** (configure publish permissions in the token wizard).
+
+   Paste the token value into `NPM_TOKEN` only once; GitHub will not show it again.
 
    Until this secret exists, CI shows `ENEEDAUTH` / `need auth` on `npm whoami` because `NODE_AUTH_TOKEN` is empty.
 
