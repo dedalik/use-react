@@ -29,3 +29,4 @@ export { default as useIntersectionObserver } from './hooks/useIntersectionObser
 export { default as useMutationObserver } from './hooks/useMutationObserver'
 export { default as useScript } from './hooks/useScript'
 export { default as useAsync } from './hooks/useAsync'
+export { default as useDraggable } from './hooks/useDraggable'

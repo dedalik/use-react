@@ -27,6 +27,7 @@ Collection of React Hooks
 - `useClickOutside`
 - `useCopyToClipboard`
 - `useDebounce`
+- `useDraggable`
 - `useEventCallback`
 - `useEventListener`
 - `useAbortController`
