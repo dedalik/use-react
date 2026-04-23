@@ -1,5 +1,6 @@
-# Publishes @dedalik/use-react to npm. Requires repository secret NPM_TOKEN on
-# THIS repo (github.com/dedalik/use-react), not use-react-docs. See CONTRIBUTING.md.
+# Publishes @dedalik/use-react via npm Trusted Publishing (OIDC). Configure the
+# package on npmjs.com to trust this workflow file name exactly: release-npm.yml
+# See CONTRIBUTING.md — no long-lived NPM_TOKEN required when OIDC is enabled.
 
 name: Release to npm
 
@@ -23,6 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      id-token: write
 
     steps:
       - name: Checkout
@@ -37,17 +39,8 @@ jobs:
           registry-url: https://registry.npmjs.org
           always-auth: "false"
 
-      - name: Verify npm token for publish
-        run: |
-          if [ -z "${NODE_AUTH_TOKEN}" ]; then
-            echo "::error::Repository secret NPM_TOKEN is missing or empty."
-            echo "Add it under GitHub → Settings → Secrets and variables → Actions."
-            echo "Create an npm token: https://www.npmjs.com/settings/~/tokens (Automation, or Granular with Publish for @dedalik/use-react)."
-            exit 1
-          fi
-          npm whoami
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Ensure npm supports trusted publishing
+        run: npm install -g npm@11.5.1 && npm -v
 
       - name: Install dependencies
         env:
@@ -87,5 +80,3 @@ jobs:
 
       - name: Publish package to npm
         run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
