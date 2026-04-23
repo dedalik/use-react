@@ -70,6 +70,14 @@ Alternatively use `npm version patch` (or minor/major), which bumps `package.jso
 
    Until this secret exists, CI shows `ENEEDAUTH` / `need auth` on `npm whoami` because `NODE_AUTH_TOKEN` is empty.
 
+   **If the Actions log still shows `NODE_AUTH_TOKEN:` blank** (our step prints `Repository secret NPM_TOKEN is missing or empty`):
+
+   - Add the secret on **`dedalik/use-react`** (the **library** repository that runs **Release to npm**), not on **`use-react-docs`**. The docs repo never receives this workflow.
+   - The name must be exactly **`NPM_TOKEN`** (case-sensitive). **Repository secrets** tab under **Actions**, not only **Variables** — variables are not passed to `secrets.NPM_TOKEN`.
+   - You need **admin** access to that GitHub repo to create repository secrets.
+   - If the org uses **organization secrets**: ensure this repository is **allowed** to use that secret (org **Settings → Secrets and variables → Actions** → secret → repository access).
+   - If you stored the token under a **GitHub Environment** (for example `production`), either move it to plain **repository** secrets named `NPM_TOKEN`, or add `environment: <name>` to the `publish` job in `.github/workflows/release-npm.yml` so the job can read environment secrets.
+
 3. **Version already on the registry**: npm rejects publishing the same semver twice. Check with `npm view @dedalik/use-react version` and `npm view @dedalik/use-react versions`. Bump to a new semver and tag again, or run **Actions → Release to npm → Run workflow** and enter a new version.
 
 4. **Tag format**: the workflow only reacts to tags named `v1.2.3` (leading `v`, semver after it). Lightweight tags still trigger the workflow, but an annotated tag is recommended for release notes.
