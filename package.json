@@ -5,6 +5,20 @@
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
   "types": "./dist/esm/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./*": {
+      "types": "./dist/esm/hooks/*.d.ts",
+      "import": "./dist/esm/hooks/*.js",
+      "require": "./dist/cjs/hooks/*.js"
+    },
+    "./package.json": "./package.json"
+  },
   "private": false,
   "scripts": {
     "build2": "npm run build:types && npm run build:js",
@@ -14,11 +28,16 @@
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "lint": "eslint \"{**/*,*}.{js,ts,jsx,tsx}\"",
+    "format": "prettier --write \"{src,tests,example/src}/**/*.{js,ts,jsx,tsx}\"",
+    "format:check": "prettier --check \"{src,tests,example/src}/**/*.{js,ts,jsx,tsx}\"",
     "prepare": "npm run build && husky install",
-    "prepublishOnly": "npm run test && npm run prettier && npm run lint",
-    "prettier": "prettier --write \"{src,tests,example/src}/**/*.{js,ts,jsx,tsx}\"",
+    "prepublishOnly": "npm run format:check && npm run lint && npm run test",
+    "prettier": "npm run format",
     "test": "jest --config jestconfig.json",
-    "test:coverage": "jest --coverage --config jestconfig.json"
+    "test:coverage": "jest --coverage --config jestconfig.json",
+    "version:bump:patch": "npm version patch --no-git-tag-version",
+    "version:bump:minor": "npm version minor --no-git-tag-version",
+    "version:bump:major": "npm version major --no-git-tag-version"
   },
   "keywords": [
     "react",

@@ -21,6 +21,41 @@ Collection of React Hooks
 - **Server-Side Rendering (SSR) Compatible**
 - **Adaptable**: Customizable event filters and targets for various needs
 
+## Included hooks
+
+- `useAsync`
+- `useClickOutside`
+- `useCopyToClipboard`
+- `useDebounce`
+- `useDraggable`
+- `useEventCallback`
+- `useEventListener`
+- `useAbortController`
+- `useFavicon`
+- `useHash`
+- `useIdle`
+- `useIntersectionObserver`
+- `useInterval`
+- `useLatest`
+- `useLockBodyScroll`
+- `useLocalStorage`
+- `useMediaQuery`
+- `useMountedState`
+- `useMutationObserver`
+- `useOnMount`
+- `usePageVisibility`
+- `usePrevious`
+- `useRafState`
+- `useResizeObserver`
+- `useScript`
+- `useSessionStorage`
+- `useThrottle`
+- `useTimeout`
+- `useTitle`
+- `useToggle`
+- `useTextareaAutoSize`
+- `useWindowSize`
+
 ## Usage
 
 ```tsx
@@ -44,11 +79,21 @@ export default TextareaAutoSize
 
 Refer to [functions list](https://usereact.org/functions) or [documentations](https://usereact.org/) for more details.
 
+## Open source
+
+- [Contributing guide](./CONTRIBUTING.md)
+- [Code of conduct](./CODE_OF_CONDUCT.md)
+- [Security policy](./SECURITY.md)
+
 ## Install
 
 ```bash
 npm i @dedalik/use-react
 ```
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup, formatting (`npm run format`), linting, tests, and pull request expectations.
 
 ## Thanks
 
