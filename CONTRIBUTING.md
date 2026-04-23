@@ -4,7 +4,7 @@ Thank you for helping improve `@dedalik/use-react`. This document covers how to 
 
 ## Prerequisites
 
-- Node.js 18 or newer (CI uses Node 20)
+- Node.js 20 or newer (GitHub Actions uses Node 24)
 - npm (recommended; `npm ci` is used in CI)
 
 ## Getting started
