@@ -1,4 +1,4 @@
-import createEventHook from '../src/hooks/createEventHook'
+import createEventHook from '../src/hooks/factories/createEventHook'
 
 describe('createEventHook', () => {
   it('subscribes, triggers and unsubscribes', () => {

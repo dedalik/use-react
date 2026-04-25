@@ -1,4 +1,4 @@
-import onKeyStroke from '../src/hooks/onKeyStroke'
+import onKeyStroke from '../src/hooks/events/onKeyStroke'
 
 describe('onKeyStroke', () => {
   it('listens for matching key and cleans up', () => {

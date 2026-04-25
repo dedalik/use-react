@@ -1,4 +1,4 @@
-import onStartTyping from '../src/hooks/onStartTyping'
+import onStartTyping from '../src/hooks/events/onStartTyping'
 
 describe('onStartTyping', () => {
   it('fires once per typing burst', () => {

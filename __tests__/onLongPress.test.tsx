@@ -1,4 +1,4 @@
-import onLongPress from '../src/hooks/onLongPress'
+import onLongPress from '../src/hooks/events/onLongPress'
 
 describe('onLongPress', () => {
   it('calls callback after delay', () => {

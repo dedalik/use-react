@@ -1,4 +1,4 @@
-import isDefined from '../src/hooks/isDefined'
+import isDefined from '../src/hooks/utils/isDefined'
 
 describe('isDefined', () => {
   it('returns true only for non-nullish values', () => {

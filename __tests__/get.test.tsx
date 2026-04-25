@@ -1,4 +1,4 @@
-import get from '../src/hooks/get'
+import get from '../src/hooks/utils/get'
 
 describe('get', () => {
   it('returns nested values and fallback', () => {

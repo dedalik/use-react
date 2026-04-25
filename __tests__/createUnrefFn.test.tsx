@@ -1,4 +1,4 @@
-import createUnrefFn from '../src/hooks/createUnrefFn'
+import createUnrefFn from '../src/hooks/factories/createUnrefFn'
 
 describe('createUnrefFn', () => {
   it('returns getter for raw value', () => {

@@ -1,5 +1,5 @@
 import { act } from '@testing-library/react'
-import onElementRemoval from '../src/hooks/onElementRemoval'
+import onElementRemoval from '../src/hooks/events/onElementRemoval'
 
 describe('onElementRemoval', () => {
   it('fires callback when element is removed', async () => {
