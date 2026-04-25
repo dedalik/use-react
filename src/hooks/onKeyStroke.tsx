@@ -5,6 +5,7 @@ export interface OnKeyStrokeOptions {
 
 /**
  * Subscribes to keyboard events and invokes callback for matching keys.
+ * **Not** a React hook (no `useState` / `useEffect`); Rules of Hooks do not govern call sites.
  */
 export default function onKeyStroke(
   key: string | string[] | null,

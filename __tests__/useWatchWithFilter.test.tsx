@@ -1,11 +1,11 @@
 import { renderHook } from '@testing-library/react'
-import watchWithFilter from '../src/hooks/watchWithFilter'
+import useWatchWithFilter from '../src/hooks/useWatchWithFilter'
 
-describe('watchWithFilter', () => {
+describe('useWatchWithFilter', () => {
   it('runs callback only when filter passes', () => {
     const spy = jest.fn()
     const filter = (next: number) => next % 2 === 0
-    const { rerender } = renderHook(({ value }) => watchWithFilter(value, spy, filter), {
+    const { rerender } = renderHook(({ value }) => useWatchWithFilter(value, spy, filter), {
       initialProps: { value: 1 },
     })
 

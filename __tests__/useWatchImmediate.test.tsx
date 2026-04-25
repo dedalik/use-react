@@ -1,10 +1,10 @@
 import { renderHook } from '@testing-library/react'
-import watchImmediate from '../src/hooks/watchImmediate'
+import useWatchImmediate from '../src/hooks/useWatchImmediate'
 
-describe('watchImmediate', () => {
+describe('useWatchImmediate', () => {
   it('runs on mount and updates with previous value', () => {
     const spy = jest.fn()
-    const { rerender } = renderHook(({ value }) => watchImmediate(value, spy), { initialProps: { value: 1 } })
+    const { rerender } = renderHook(({ value }) => useWatchImmediate(value, spy), { initialProps: { value: 1 } })
 
     expect(spy).toHaveBeenCalledWith(1, undefined)
 

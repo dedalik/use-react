@@ -1,10 +1,10 @@
 import { renderHook } from '@testing-library/react'
-import watchAtMost from '../src/hooks/watchAtMost'
+import useWatchAtMost from '../src/hooks/useWatchAtMost'
 
-describe('watchAtMost', () => {
+describe('useWatchAtMost', () => {
   it('runs callback only up to limit', () => {
     const spy = jest.fn()
-    const { rerender } = renderHook(({ value }) => watchAtMost(value, spy, 2), { initialProps: { value: 1 } })
+    const { rerender } = renderHook(({ value }) => useWatchAtMost(value, spy, 2), { initialProps: { value: 1 } })
 
     rerender({ value: 2 })
     rerender({ value: 3 })

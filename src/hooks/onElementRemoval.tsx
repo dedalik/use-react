@@ -6,6 +6,7 @@ export interface OnElementRemovalOptions {
 
 /**
  * Calls callback once target element is removed from DOM.
+ * **Not** a React hook; typically used inside `useEffect`.
  */
 export default function onElementRemoval(
   element: Element,
