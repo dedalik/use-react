@@ -1,4 +1,4 @@
-import set from '../src/hooks/set'
+import set from '../src/hooks/utils/set'
 
 describe('set', () => {
   it('sets nested value in-place', () => {

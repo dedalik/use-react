@@ -1,4 +1,4 @@
-import makeDestructurable from '../src/hooks/makeDestructurable'
+import makeDestructurable from '../src/hooks/utils/makeDestructurable'
 
 describe('makeDestructurable', () => {
   it('supports object fields and tuple destructuring', () => {

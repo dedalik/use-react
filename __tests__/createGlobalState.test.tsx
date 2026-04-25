@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react'
-import createGlobalState from '../src/hooks/createGlobalState'
+import createGlobalState from '../src/hooks/factories/createGlobalState'
 
 describe('createGlobalState', () => {
   it('shares state across hook consumers', () => {

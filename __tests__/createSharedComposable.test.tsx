@@ -1,4 +1,4 @@
-import createSharedComposable from '../src/hooks/createSharedComposable'
+import createSharedComposable from '../src/hooks/factories/createSharedComposable'
 
 describe('createSharedComposable', () => {
   it('returns singleton factory result', () => {

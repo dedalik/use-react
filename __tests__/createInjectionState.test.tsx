@@ -1,6 +1,6 @@
 import React from 'react'
 import { renderHook } from '@testing-library/react'
-import createInjectionState from '../src/hooks/createInjectionState'
+import createInjectionState from '../src/hooks/factories/createInjectionState'
 
 describe('createInjectionState', () => {
   it('provides shared value via Provider', () => {
