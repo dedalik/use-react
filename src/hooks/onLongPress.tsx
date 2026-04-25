@@ -8,6 +8,7 @@ export interface OnLongPressHandlers {
 
 /**
  * Returns pointer handlers that call callback after press duration.
+ * **Not** a React hook; safe from handlers or effects without Rules-of-Hooks constraints on this API.
  */
 export default function onLongPress(callback: () => void, delay = 500): OnLongPressHandlers {
   let timeoutId: ReturnType<typeof setTimeout> | null = null

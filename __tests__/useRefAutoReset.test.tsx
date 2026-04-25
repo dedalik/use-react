@@ -1,12 +1,12 @@
 import { act, renderHook } from '@testing-library/react'
-import refAutoReset from '../src/hooks/refAutoReset'
+import useRefAutoReset from '../src/hooks/useRefAutoReset'
 
-describe('refAutoReset', () => {
+describe('useRefAutoReset', () => {
   beforeEach(() => jest.useFakeTimers())
   afterEach(() => jest.useRealTimers())
 
   it('resets to initial value after timeout', () => {
-    const { result } = renderHook(() => refAutoReset(1, 100))
+    const { result } = renderHook(() => useRefAutoReset(1, 100))
 
     act(() => {
       result.current.set(5)

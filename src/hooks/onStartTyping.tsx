@@ -5,6 +5,7 @@ export interface OnStartTypingOptions {
 
 /**
  * Calls callback when user starts typing after idle pause.
+ * **Not** a React hook; use from `useEffect` or similar subscription code.
  */
 export default function onStartTyping(
   callback: (event: KeyboardEvent) => void,

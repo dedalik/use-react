@@ -1,10 +1,10 @@
 import { renderHook } from '@testing-library/react'
-import watchArray from '../src/hooks/watchArray'
+import useWatchArray from '../src/hooks/useWatchArray'
 
-describe('watchArray', () => {
+describe('useWatchArray', () => {
   it('reports added and removed items', () => {
     const spy = jest.fn()
-    const { rerender } = renderHook(({ value }) => watchArray(value, spy), {
+    const { rerender } = renderHook(({ value }) => useWatchArray(value, spy), {
       initialProps: { value: [1, 2] },
     })
 

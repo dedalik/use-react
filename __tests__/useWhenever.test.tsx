@@ -1,10 +1,10 @@
 import { renderHook } from '@testing-library/react'
-import whenever from '../src/hooks/whenever'
+import useWhenever from '../src/hooks/useWhenever'
 
-describe('whenever', () => {
+describe('useWhenever', () => {
   it('fires only on false -> true transitions', () => {
     const spy = jest.fn()
-    const { rerender } = renderHook(({ condition }) => whenever(condition, spy), {
+    const { rerender } = renderHook(({ condition }) => useWhenever(condition, spy), {
       initialProps: { condition: false },
     })
 

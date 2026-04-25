@@ -1,10 +1,10 @@
 import { renderHook } from '@testing-library/react'
-import watchDeep from '../src/hooks/watchDeep'
+import useWatchDeep from '../src/hooks/useWatchDeep'
 
-describe('watchDeep', () => {
+describe('useWatchDeep', () => {
   it('reacts to deep structural changes', () => {
     const spy = jest.fn()
-    const { rerender } = renderHook(({ value }) => watchDeep(value, spy), {
+    const { rerender } = renderHook(({ value }) => useWatchDeep(value, spy), {
       initialProps: { value: { a: 1, nested: { b: 2 } } },
     })
 

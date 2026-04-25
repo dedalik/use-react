@@ -1,10 +1,10 @@
 import { act, renderHook } from '@testing-library/react'
-import watchTriggerable from '../src/hooks/watchTriggerable'
+import useWatchTriggerable from '../src/hooks/useWatchTriggerable'
 
-describe('watchTriggerable', () => {
+describe('useWatchTriggerable', () => {
   it('supports manual trigger with override value', () => {
     const spy = jest.fn()
-    const { result } = renderHook(({ value }) => watchTriggerable(value, spy), { initialProps: { value: 1 } })
+    const { result } = renderHook(({ value }) => useWatchTriggerable(value, spy), { initialProps: { value: 1 } })
 
     act(() => {
       result.current.trigger(5)

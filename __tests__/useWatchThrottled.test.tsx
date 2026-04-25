@@ -1,13 +1,13 @@
 import { act, renderHook } from '@testing-library/react'
-import watchThrottled from '../src/hooks/watchThrottled'
+import useWatchThrottled from '../src/hooks/useWatchThrottled'
 
-describe('watchThrottled', () => {
+describe('useWatchThrottled', () => {
   beforeEach(() => jest.useFakeTimers())
   afterEach(() => jest.useRealTimers())
 
   it('throttles updates over the delay window', () => {
     const spy = jest.fn()
-    const { rerender } = renderHook(({ value }) => watchThrottled(value, spy, 100), { initialProps: { value: 1 } })
+    const { rerender } = renderHook(({ value }) => useWatchThrottled(value, spy, 100), { initialProps: { value: 1 } })
 
     rerender({ value: 2 })
     rerender({ value: 3 })

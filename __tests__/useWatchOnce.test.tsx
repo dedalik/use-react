@@ -1,10 +1,10 @@
 import { renderHook } from '@testing-library/react'
-import watchOnce from '../src/hooks/watchOnce'
+import useWatchOnce from '../src/hooks/useWatchOnce'
 
-describe('watchOnce', () => {
+describe('useWatchOnce', () => {
   it('fires only once after first change', () => {
     const spy = jest.fn()
-    const { rerender } = renderHook(({ value }) => watchOnce(value, spy), { initialProps: { value: 1 } })
+    const { rerender } = renderHook(({ value }) => useWatchOnce(value, spy), { initialProps: { value: 1 } })
 
     expect(spy).not.toHaveBeenCalled()
 

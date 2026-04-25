@@ -1,12 +1,12 @@
 import { act, renderHook } from '@testing-library/react'
-import refThrottled from '../src/hooks/refThrottled'
+import useRefThrottled from '../src/hooks/useRefThrottled'
 
-describe('refThrottled', () => {
+describe('useRefThrottled', () => {
   beforeEach(() => jest.useFakeTimers())
   afterEach(() => jest.useRealTimers())
 
   it('throttles updates to delay window', () => {
-    const { result, rerender } = renderHook(({ value }) => refThrottled(value, 100), {
+    const { result, rerender } = renderHook(({ value }) => useRefThrottled(value, 100), {
       initialProps: { value: 1 },
     })
 
