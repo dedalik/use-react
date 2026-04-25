@@ -1,6 +1,6 @@
 # Publishes @dedalik/use-react via npm Trusted Publishing (OIDC). Configure the
 # package on npmjs.com to trust this workflow file name exactly: release-npm.yml
-# See CONTRIBUTING.md — no long-lived NPM_TOKEN required when OIDC is enabled.
+# See CONTRIBUTING.md - no long-lived NPM_TOKEN required when OIDC is enabled.
 
 name: Release to npm
 
