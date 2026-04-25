@@ -64,21 +64,21 @@ Alternatively use `npm version patch` (or minor/major), which bumps `package.jso
    - **Organization or user:** `dedalik`
    - **Repository:** `use-react`
    - **Workflow filename:** `release-npm.yml` (only the file name, must match the file under `.github/workflows/`, case-sensitive)
-   - **Environment (optional):** leave empty unless you also add `environment: <name>` to the `publish` job in this repo — if you set an environment on npm, the job must use the same name.
-3. Keep **`package.json` → `repository.url`** pointing at this repo (`git+https://github.com/dedalik/use-react.git`) — npm uses it for provenance and publisher checks.
+   - **Environment (optional):** leave empty unless you also add `environment: <name>` to the `publish` job in this repo - if you set an environment on npm, the job must use the same name.
+3. Keep **`package.json` → `repository.url`** pointing at this repo (`git+https://github.com/dedalik/use-react.git`) - npm uses it for provenance and publisher checks.
 4. The workflow already sets **`permissions: id-token: write`**, **Node 24**, and upgrades **npm to 11.5.1+** (required for OIDC). Publishing runs **`npm publish --access public`** with **no** `NODE_AUTH_TOKEN`.
 
 The **first** publish of a brand-new package may still require a one-time manual `npm publish` with login; after the package exists, switch to trusted publishing only.
 
 ### Legacy: `NPM_TOKEN` (optional)
 
-The workflow **does not read `NPM_TOKEN`**. If you are not using trusted publishing yet, add token-based auth back to the workflow locally, or publish manually. For a token-based CI setup, use a classic **`Automation`** token (not `Publish`) to avoid **`EOTP`** in Actions — see [npm access tokens](https://www.npmjs.com/settings/~/tokens).
+The workflow **does not read `NPM_TOKEN`**. If you are not using trusted publishing yet, add token-based auth back to the workflow locally, or publish manually. For a token-based CI setup, use a classic **`Automation`** token (not `Publish`) to avoid **`EOTP`** in Actions - see [npm access tokens](https://www.npmjs.com/settings/~/tokens).
 
 ### If the registry did not update after a tag
 
 1. **Actions** → **Release to npm** → open the failed run and read the log.
 2. **Trusted publisher mismatch:** npm shows auth errors if **owner**, **repo**, or **workflow file name** does not match npm’s form exactly (`release-npm.yml`). **`workflow_dispatch`** is validated against the **same** workflow file name.
-3. **Version already published:** `npm view @dedalik/use-react versions` — bump semver and tag again.
+3. **Version already published:** `npm view @dedalik/use-react versions` - bump semver and tag again.
 4. **Self-hosted runners:** trusted publishing is **not** supported on self-hosted GitHub runners yet (npm limitation); use GitHub-hosted `ubuntu-latest` as in this workflow.
 5. **Manual publish:** `npm login` then `npm publish --access public` from a machine with the built `dist/` folder.
 
