@@ -37,7 +37,6 @@ jobs:
           cache: npm
           package-manager-cache: false
           registry-url: https://registry.npmjs.org
-          always-auth: "false"
 
       - name: Ensure npm supports trusted publishing
         run: npm install -g npm@11.5.1 && npm -v
@@ -73,7 +72,15 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Sync package.json version with tag / input
-        run: npm version "${{ steps.tag_version.outputs.version }}" --no-git-tag-version
+        run: |
+          TARGET_VERSION="${{ steps.tag_version.outputs.version }}"
+          CURRENT_VERSION="$(node -p "require('./package.json').version")"
+
+          if [ "$CURRENT_VERSION" = "$TARGET_VERSION" ]; then
+            echo "package.json already has version $CURRENT_VERSION, skipping sync."
+          else
+            npm version "$TARGET_VERSION" --no-git-tag-version
+          fi
 
       - name: Verify quality gates
         run: npm run format:check && npm run test && npm run lint && npm run build
