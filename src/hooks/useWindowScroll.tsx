@@ -19,9 +19,10 @@ export default function useWindowScroll(): WindowScrollState {
       setState({ x: window.scrollX, y: window.scrollY })
     }
 
-    window.addEventListener('scroll', onScroll, { passive: true })
+    const scrollListenerOptions: AddEventListenerOptions = { passive: true }
+    window.addEventListener('scroll', onScroll, scrollListenerOptions)
     onScroll()
-    return () => window.removeEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll, scrollListenerOptions)
   }, [])
 
   return state
