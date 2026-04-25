@@ -7,6 +7,13 @@ export interface BrowserLocationState {
   hash: string
 }
 
+const emptyLocation: BrowserLocationState = {
+  href: '',
+  pathname: '',
+  search: '',
+  hash: '',
+}
+
 function readLocation(): BrowserLocationState {
   return {
     href: window.location.href,
@@ -20,10 +27,15 @@ function readLocation(): BrowserLocationState {
  * Tracks browser location changes from history and hash events.
  */
 export default function useBrowserLocation(): BrowserLocationState {
-  const [state, setState] = useState<BrowserLocationState>(() => readLocation())
+  const [state, setState] = useState<BrowserLocationState>(() =>
+    typeof window === 'undefined' ? emptyLocation : readLocation(),
+  )
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
+
     const update = () => setState(readLocation())
+    update()
 
     window.addEventListener('popstate', update)
     window.addEventListener('hashchange', update)
