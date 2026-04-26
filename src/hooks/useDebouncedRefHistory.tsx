@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 export interface UseDebouncedRefHistoryOptions {
   delay?: number
@@ -17,6 +17,8 @@ export interface UseDebouncedRefHistoryReturn<T> {
   clear: () => void
 }
 
+type Bundle<T> = { value: T; history: T[]; pointer: number }
+
 /**
  * Records history snapshots after debounced state changes.
  */
@@ -25,55 +27,65 @@ export default function useDebouncedRefHistory<T>(
   options: UseDebouncedRefHistoryOptions = {},
 ): UseDebouncedRefHistoryReturn<T> {
   const { delay = 200, capacity = 10 } = options
-  const [value, setValue] = useState(initialValue)
-  const [state, setState] = useState(() => ({ history: [initialValue] as T[], pointer: 0 }))
+  const [b, setB] = useState<Bundle<T>>(() => ({
+    value: initialValue,
+    history: [initialValue] as T[],
+    pointer: 0,
+  }))
 
   useEffect(() => {
     const id = window.setTimeout(
       () => {
-        setState((prev) => {
+        setB((prev) => {
           const current = prev.history[prev.pointer]
-          if (Object.is(current, value)) return prev
+          if (Object.is(current, prev.value)) return prev
           const base = prev.history.slice(0, prev.pointer + 1)
-          const nextHistory = [...base, value]
+          const nextHistory = [...base, prev.value]
           const max = Math.max(1, capacity)
           const trimmed = nextHistory.length > max ? nextHistory.slice(nextHistory.length - max) : nextHistory
-          return { history: trimmed, pointer: trimmed.length - 1 }
+          return { ...prev, history: trimmed, pointer: trimmed.length - 1 }
         })
       },
       Math.max(0, delay),
     )
 
     return () => window.clearTimeout(id)
-  }, [capacity, delay, value])
+  }, [b.value, capacity, delay])
 
-  const undo = () => {
-    setState((prev) => {
-      const pointer = Math.max(0, prev.pointer - 1)
-      setValue(prev.history[pointer])
-      return { ...prev, pointer }
+  const set = useCallback((next: T) => {
+    setB((prev) => ({ ...prev, value: next }))
+  }, [])
+
+  const undo = useCallback(() => {
+    setB((prev) => {
+      if (prev.pointer === 0) return prev
+      const pointer = prev.pointer - 1
+      return { ...prev, pointer, value: prev.history[pointer] }
     })
-  }
+  }, [])
 
-  const redo = () => {
-    setState((prev) => {
-      const pointer = Math.min(prev.history.length - 1, prev.pointer + 1)
-      setValue(prev.history[pointer])
-      return { ...prev, pointer }
+  const redo = useCallback(() => {
+    setB((prev) => {
+      if (prev.pointer >= prev.history.length - 1) return prev
+      const pointer = prev.pointer + 1
+      return { ...prev, pointer, value: prev.history[pointer] }
     })
-  }
+  }, [])
 
-  const clear = () => {
-    setState((prev) => ({ history: [prev.history[prev.pointer]], pointer: 0 }))
-  }
+  const clear = useCallback(() => {
+    setB((prev) => {
+      const v = prev.history[prev.pointer]
+      return { ...prev, history: [v], pointer: 0, value: v }
+    })
+  }, [])
 
   return {
-    value,
-    set: setValue,
-    history: state.history,
-    pointer: state.pointer,
-    canUndo: state.pointer > 0,
-    canRedo: state.pointer < state.history.length - 1,
+    value: b.value,
+    set,
+    history: b.history,
+    pointer: b.pointer,
+    canUndo: b.pointer > 0,
+    canRedo: b.pointer < b.history.length - 1,
     undo,
     redo,
     clear,

@@ -21,4 +21,35 @@ describe('useDebouncedRefHistory', () => {
 
     expect(result.current.history).toEqual([1, 3])
   })
+
+  it('undo, redo, and clear sync the displayed value', () => {
+    const { result } = renderHook(() => useDebouncedRefHistory('a', { delay: 100 }))
+
+    act(() => {
+      result.current.set('b')
+    })
+    act(() => {
+      jest.advanceTimersByTime(100)
+    })
+    expect(result.current.value).toBe('b')
+    expect(result.current.canUndo).toBe(true)
+
+    act(() => {
+      result.current.undo()
+    })
+    expect(result.current.value).toBe('a')
+    expect(result.current.canRedo).toBe(true)
+
+    act(() => {
+      result.current.redo()
+    })
+    expect(result.current.value).toBe('b')
+
+    act(() => {
+      result.current.clear()
+    })
+    expect(result.current.history).toEqual(['b'])
+    expect(result.current.pointer).toBe(0)
+    expect(result.current.value).toBe('b')
+  })
 })
