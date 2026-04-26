@@ -25,7 +25,9 @@ Collection of React Hooks
 
 Current exports: **188** (hooks + utilities).
 
-### State (16)
+Full index: **[usereact.org/functions](https://usereact.org/functions)** — each hook name below links to its reference page on the docs site.
+
+### [State (16)](https://usereact.org/functions/state)
 
 - [`useAsyncState`](https://usereact.org/functions/useAsyncState) - Export Size: `1.9 kB` (gzip `732 B`) - load async data with managed state and loading flags.
 - [`useCounter`](https://usereact.org/functions/useCounter) - Export Size: `1.2 kB` (gzip `440 B`) - count state with inc/dec/set/reset and optional min/max clamping.
@@ -44,7 +46,7 @@ Current exports: **188** (hooks + utilities).
 - [`useThrottle`](https://usereact.org/functions/useThrottle) - Export Size: `856 B` (gzip `381 B`) - Limit update frequency.
 - [`useToggle`](https://usereact.org/functions/useToggle) - Export Size: `512 B` (gzip `268 B`) - Toggle boolean state.
 
-### Elements (9)
+### [Elements (9)](https://usereact.org/functions/elements)
 
 - [`useDraggable`](https://usereact.org/functions/useDraggable) - Export Size: `6.6 kB` (gzip `1.7 kB`) - Make an element draggable.
 - [`useActiveElement`](https://usereact.org/functions/useActiveElement) - Export Size: `784 B` (gzip `322 B`) - reactive document.activeElement tracker.
@@ -56,7 +58,7 @@ Current exports: **188** (hooks + utilities).
 - [`useWindowFocus`](https://usereact.org/functions/useWindowFocus) - Export Size: `776 B` (gzip `350 B`) - reactive window focus/blur state.
 - [`useWindowScroll`](https://usereact.org/functions/useWindowScroll) - Export Size: `823 B` (gzip `366 B`) - reactive window scroll coordinates.
 
-### Browser (53)
+### [Browser (53)](https://usereact.org/functions/browser)
 
 - [`useBrowserLocation`](https://usereact.org/functions/useBrowserLocation) - Export Size: `1.1 kB` (gzip `440 B`) - reactive snapshot of URL fields with popstate/hashchange updates.
 - [`useBreakpoints`](https://usereact.org/functions/useBreakpoints) - Export Size: `1.1 kB` (gzip `469 B`) - active breakpoint names and flags from window width.
@@ -112,7 +114,7 @@ Current exports: **188** (hooks + utilities).
 - [`useWebWorkerFn`](https://usereact.org/functions/useWebWorkerFn) - Export Size: `712 B` (gzip `374 B`) - offload function execution to worker context.
 - [`useWindowSize`](https://usereact.org/functions/useWindowSize) - Export Size: `781 B` (gzip `356 B`) - Track window width and height.
 
-### Sensors (29)
+### [Sensors (29)](https://usereact.org/functions/sensors)
 
 - [`useBattery`](https://usereact.org/functions/useBattery) - Export Size: `2.0 kB` (gzip `563 B`) - level, charging, times, isSupported, event-driven.
 - [`useDevicePixelRatio`](https://usereact.org/functions/useDevicePixelRatio) - Export Size: `729 B` (gzip `346 B`) - reactive device pixel ratio value.
@@ -144,7 +146,7 @@ Current exports: **188** (hooks + utilities).
 - [`useTextSelection`](https://usereact.org/functions/useTextSelection) - Export Size: `977 B` (gzip `406 B`) - current selected text and collapsed state.
 - [`useUserMedia`](https://usereact.org/functions/useUserMedia) - Export Size: `2.2 kB` (gzip `792 B`) - start/stop media stream with loading and errors.
 
-### Network (5)
+### [Network (5)](https://usereact.org/functions/network)
 
 - [`useAbortController`](https://usereact.org/functions/useAbortController) - Export Size: `1.6 kB` (gzip `500 B`) - Cancel stale async requests.
 - [`useAsync`](https://usereact.org/functions/useAsync) - Export Size: `1.6 kB` (gzip `585 B`) - Manage async state and execution.
@@ -152,7 +154,7 @@ Current exports: **188** (hooks + utilities).
 - [`useFetch`](https://usereact.org/functions/useFetch) - Export Size: `2.6 kB` (gzip `867 B`) - loading/data/error state around fetch calls.
 - [`useWebSocket`](https://usereact.org/functions/useWebSocket) - Export Size: `1.4 kB` (gzip `580 B`) - connection status, last message, and send helper.
 
-### Animation (6)
+### [Animation (6)](https://usereact.org/functions/animation)
 
 - [`useAnimate`](https://usereact.org/functions/useAnimate) - Export Size: `1.3 kB` (gzip `526 B`) - Web Animations API wrapper with play/cancel.
 - [`useIntervalFn`](https://usereact.org/functions/useIntervalFn) - Export Size: `1.2 kB` (gzip `475 B`) - interval controls with active state.
@@ -161,12 +163,12 @@ Current exports: **188** (hooks + utilities).
 - [`useTimeoutFn`](https://usereact.org/functions/useTimeoutFn) - Export Size: `1.2 kB` (gzip `475 B`) - one-shot timeout controls.
 - [`usePresenceTransition`](https://usereact.org/functions/usePresenceTransition) - Export Size: `1.3 kB` (gzip `552 B`) - derive enter/exit stages with mount control (no clash with React’s useTransition).
 
-### Component (2)
+### [Component (2)](https://usereact.org/functions/component)
 
 - [`useMountedState`](https://usereact.org/functions/useMountedState) - Export Size: `408 B` (gzip `218 B`) - Check if component is mounted.
 - [`useVirtualList`](https://usereact.org/functions/useVirtualList) - Export Size: `1.6 kB` (gzip `637 B`) - render only visible rows for large lists.
 
-### Watch (12)
+### [Watch (12)](https://usereact.org/functions/watch)
 
 - [`useWatchImmediate`](https://usereact.org/functions/useWatchImmediate) - Export Size: `558 B` (gzip `344 B`) - run callback on mount and each source change.
 - [`useWatchOnce`](https://usereact.org/functions/useWatchOnce) - Export Size: `805 B` (gzip `424 B`) - fire a callback a single time from a watched value.
@@ -181,13 +183,13 @@ Current exports: **188** (hooks + utilities).
 - [`useWatchIgnorable`](https://usereact.org/functions/useWatchIgnorable) - Export Size: `918 B` (gzip `434 B`) - batch updates without firing a watch.
 - [`useWhenever`](https://usereact.org/functions/useWhenever) - Export Size: `573 B` (gzip `335 B`) - call side effects when a condition flips to true.
 
-### Reactivity (3)
+### [Reactivity (3)](https://usereact.org/functions/reactivity)
 
 - [`useRefAutoReset`](https://usereact.org/functions/useRefAutoReset) - Export Size: `1.2 kB` (gzip `458 B`) - reset a value to initial state after a timeout.
 - [`useRefDebounced`](https://usereact.org/functions/useRefDebounced) - Export Size: `547 B` (gzip `308 B`) - expose a debounced version of a changing value.
 - [`useRefThrottled`](https://usereact.org/functions/useRefThrottled) - Export Size: `1.3 kB` (gzip `456 B`) - expose a throttled version of a changing value.
 
-### Array (15)
+### [Array (15)](https://usereact.org/functions/array)
 
 - [`useCycleList`](https://usereact.org/functions/useCycleList) - Export Size: `1.3 kB` (gzip `474 B`) - cyclic next/prev index and current item.
 - [`useArrayMap`](https://usereact.org/functions/useArrayMap) - Export Size: `265 B` (gzip `195 B`) - useMemo around Array.map for derived rows.
@@ -205,7 +207,7 @@ Current exports: **188** (hooks + utilities).
 - [`useSorted`](https://usereact.org/functions/useSorted) - Export Size: `610 B` (gzip `335 B`) - memoized sorted array copy.
 - [`useStepper`](https://usereact.org/functions/useStepper) - Export Size: `1.1 kB` (gzip `419 B`) - numeric step in [min, max] with next/prev.
 
-### Time (8)
+### [Time (8)](https://usereact.org/functions/time)
 
 - [`useCountdown`](https://usereact.org/functions/useCountdown) - Export Size: `3.4 kB` (gzip `1.1 kB`) - remaining ms, clock fields, optional onComplete.
 - [`useDateFormat`](https://usereact.org/functions/useDateFormat) - Export Size: `1.2 kB` (gzip `556 B`) - memoized Intl.DateTimeFormat output string.
@@ -216,7 +218,7 @@ Current exports: **188** (hooks + utilities).
 - [`useTimeout`](https://usereact.org/functions/useTimeout) - Export Size: `546 B` (gzip `269 B`) - schedule a callback with automatic cleanup.
 - [`useTimestamp`](https://usereact.org/functions/useTimestamp) - Export Size: `749 B` (gzip `390 B`) - Date.now on an interval, same as useNow but number.
 
-### Utilities (30)
+### [Utilities (30)](https://usereact.org/functions/utilities)
 
 **Hooks**
 
@@ -281,7 +283,7 @@ const TextareaAutoSize: React.FC = () => {
 export default TextareaAutoSize
 ```
 
-Refer to [functions list](https://usereact.org/functions) or [documentations](https://usereact.org/) for more details.
+Refer to the **[functions catalog](https://usereact.org/functions)** or the **[docs home](https://usereact.org/)** for more details.
 
 ## Open source
 
