@@ -84,6 +84,7 @@ The workflow **does not read `NPM_TOKEN`**. If you are not using trusted publish
 
 ## Pull requests
 
+- Do **not** add editor trailers (for example `Made-with: Cursor`) to commit message bodies; keep the subject line and optional project-focused body only.
 - Keep changes focused and describe the motivation in the PR text.
 - Confirm `npm run format:check`, `npm run lint`, `npm run test`, and `npm run build` pass locally.
 - Documentation and user-facing strings should be in **English**.
