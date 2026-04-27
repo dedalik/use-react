@@ -1,0 +1,59 @@
+name: Bug report
+description: Report a reproducible bug in @dedalik/use-react
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Please include a minimal reproduction so we can fix faster.
+  - type: input
+    id: hook
+    attributes:
+      label: Hook or utility name
+      placeholder: useElementSize, useDebounce, ...
+    validations:
+      required: true
+  - type: input
+    id: package_version
+    attributes:
+      label: Package version
+      placeholder: 1.1.1
+    validations:
+      required: true
+  - type: input
+    id: react_version
+    attributes:
+      label: React version
+      placeholder: 18.3.x
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction link or repo
+      placeholder: GitHub repo / StackBlitz / CodeSandbox
+    validations:
+      required: false
