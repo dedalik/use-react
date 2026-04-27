@@ -25,7 +25,7 @@ Collection of React Hooks
 
 Current exports: **188** (hooks + utilities).
 
-Full index: **[usereact.org/functions](https://usereact.org/functions)** — each hook name below links to its reference page on the docs site.
+Full index: **[usereact.org/functions](https://usereact.org/functions)** - each hook name below links to its reference page on the docs site.
 
 ### [State (16)](https://usereact.org/functions/state)
 
