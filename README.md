@@ -290,6 +290,7 @@ Refer to the **[functions catalog](https://usereact.org/functions)** or the **[d
 - [Contributing guide](./CONTRIBUTING.md)
 - [Code of conduct](./CODE_OF_CONDUCT.md)
 - [Security policy](./SECURITY.md)
+- [Support](./SUPPORT.md)
 
 ## Install
 
